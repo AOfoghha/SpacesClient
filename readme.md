@@ -14,7 +14,6 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/spaces-dev/SpacesClient/master/src/images/Screenshot_1.png)
 ![screenshot](https://raw.githubusercontent.com/spaces-dev/SpacesClient/master/src/images/Screenshot_2.png)
 
 ## Key Features
@@ -47,7 +46,7 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 
 ## Download
 
-You can [download](https://github.com/spaces-dev/SpacesClient/releases) latest installable version of Markdownify for Android & iOS.
+You can [download](https://github.com/spaces-dev/SpacesClient/releases) latest installable version of Spaces for Android & iOS.
 
 ## Credits
 
