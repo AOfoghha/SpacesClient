@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
-import { AsyncStorage, Text, Image, TextInput, TouchableOpacity, View, StyleSheet, Alert } from 'react-native';
+import { Text, Image, TextInput, TouchableOpacity, View, StyleSheet, Alert } from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
-export default class Registration extends Component {
+export default class Restore extends Component {
 
   constructor() {
     super();
     this.state = {
       login: null
-    }
-  }
-
-  async onValueChange(item, selectedValue) {
-    try {
-      await AsyncStorage.setItem(item, selectedValue);
-    } catch (error) {
-      console.log('AsyncStorage error: ' + error.message);
     }
   }
 

@@ -6,6 +6,7 @@ import com.facebook.react.ReactApplication;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.horcrux.svg.SvgPackage;
 import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new SplashScreenReactPackage(),
               new SvgPackage(),
-                new RNInAppBrowserPackage()
+                new RNInAppBrowserPackage(),
+                  new VectorIconsPackage()
       );
     }
 
