@@ -3,7 +3,7 @@ import { AsyncStorage, Text, TouchableOpacity, View, StyleSheet } from 'react-na
 import { Actions } from 'react-native-router-flux';
 import { Serialize } from '../api';
 
-export default class Home extends Component {
+export default class Profile extends Component {
 
 	constructor() {
 		super();

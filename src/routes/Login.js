@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncStorage, Text, Image, TextInput, TouchableOpacity, View, StyleSheet, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Serialize, Loader } from '../api';
 
 export default class Login extends Component {
@@ -56,16 +56,16 @@ export default class Login extends Component {
 				</View>
 				<View style={signupSocialButtom}>
 					<TouchableOpacity style={vk} onPress={this.userLogin}>
-						<Icon name="vk" size={18} color="#fff" />
+						<Icon name="vk" size={22} color="#fff" />
 					</TouchableOpacity>
 					<TouchableOpacity style={ok} onPress={this.userLogin}>
-						<Icon name="odnoklassniki" size={18} color="#fff" />
+						<Icon name="odnoklassniki" size={22} color="#fff" />
 					</TouchableOpacity>
 					<TouchableOpacity style={mail} onPress={this.userLogin}>
-						<Icon name="at" size={18} color="#fff" />
+						<Icon name="mail-ru" size={22} color="#fff" />
 					</TouchableOpacity>
 					<TouchableOpacity style={fb} onPress={this.userLogin}>
-						<Icon name="facebook" size={18} color="#fff" />
+						<Icon name="facebook" size={22} color="#fff" />
 					</TouchableOpacity>
 				</View>
 				<View style={signupTextSocial}>
@@ -75,7 +75,7 @@ export default class Login extends Component {
 				</View>
 				<View style={signupTextCont}>
 					<Text style={signupText}>Нет учетной записи?</Text>
-					<TouchableOpacity onPress={() => Actions.Signup()}><Text style={signupButton}> Регистрация</Text></TouchableOpacity>
+					<TouchableOpacity onPress={() => Actions.Register()}><Text style={signupButton}> Регистрация</Text></TouchableOpacity>
 				</View>
 			</View>
 		);
@@ -101,12 +101,9 @@ export default class Login extends Component {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					this.setState({
-						loading: false
-					});
 					if (data.code == "00000") {
 						AsyncStorage.setItem('sid', data.attributes.sid);
-						Actions.Home();
+						Actions.Profile();
 					} else if (data.code == "01003") {
 						Alert.alert('Spaces', 'Неверный логин или пароль.');
 					} else if (data.code == "00003") {
@@ -116,6 +113,9 @@ export default class Login extends Component {
 					} else {
 						alert(JSON.stringify(data));
 					}
+					this.setState({
+						loading: false
+					});
 				})
 				.catch((error) => {
 					Alert.alert('Spaces', error);
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
 	},
 	vk: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#54769a',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
 	},
 	ok: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#ffaa00',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
 	},
 	mail: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#168de2',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
 	},
 	fb: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#43609c',
 		borderRadius: 5,
 		marginVertical: 10,

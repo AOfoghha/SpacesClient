@@ -79,7 +79,7 @@ project.ext.react = [
 apply from: "../../node_modules/react-native/react.gradle"
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialIcons.ttf', 'FontAwesome.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
@@ -154,7 +154,6 @@ android {
 
 dependencies {
     implementation project(':react-native-splash-screen')
-    implementation project(':react-native-svg')
     implementation project(':react-native-inappbrowser-reborn')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])

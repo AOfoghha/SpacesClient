@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Image, TextInput, TouchableOpacity, View, StyleSheet, Alert } from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Register extends Component {
 
@@ -57,17 +57,17 @@ export default class Register extends Component {
 					<Text style={styles.signupText}>Или войдите через соц. сеть</Text>
 				</View>
 				<View style={styles.signupSocialButtom}>
-					<TouchableOpacity style={styles.vk} onPress={this.userRegistration.bind(this)}>
-						<Icon name="vk" size={18} color="#fff" />
+					<TouchableOpacity style={styles.vk} onPress={this.userLogin}>
+						<Icon name="vk" size={22} color="#fff" />
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.ok} onPress={this.userRegistration.bind(this)}>
-						<Icon name="odnoklassniki" size={18} color="#fff" />
+					<TouchableOpacity style={styles.ok} onPress={this.userLogin}>
+						<Icon name="odnoklassniki" size={22} color="#fff" />
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.mail} onPress={this.userRegistration.bind(this)}>
-						<Icon name="at" size={18} color="#fff" />
+					<TouchableOpacity style={styles.mail} onPress={this.userLogin}>
+						<Icon name="mail-ru" size={22} color="#fff" />
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.fb} onPress={this.userRegistration.bind(this)}>
-						<Icon name="facebook" size={18} color="#fff" />
+					<TouchableOpacity style={styles.fb} onPress={this.userLogin}>
+						<Icon name="facebook" size={22} color="#fff" />
 					</TouchableOpacity>
 				</View>
 				<View style={styles.signupTextCont}>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 	},
 	vk: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#54769a',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
 	},
 	ok: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#ffaa00',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
 	},
 	mail: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#168de2',
 		borderRadius: 5,
 		marginVertical: 10,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
 	},
 	fb: {
 		alignItems: 'center',
-		width: 48,
+		width: 52,
 		backgroundColor: '#43609c',
 		borderRadius: 5,
 		marginVertical: 10,
