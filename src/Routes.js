@@ -11,13 +11,20 @@ import Mail from './routes/Mail';
 import Journal from './routes/Journal';
 import Lenta from './routes/Lenta';
 import Profile from './routes/Profile';
+import { Serialize } from './api';
 
 class TabIcon extends Component {
   render() {
     return (
       <View style={styles.Tabs}>
-        <Icon style={{color: '#fff'}} name={this.props.iconName} size={24}/>
-        <Text style={{color: '#fff', fontSize: 12}}>{this.props.title}</Text>
+        <Icon style={{ color: '#fff' }} name={this.props.iconName} size={22} />
+        {
+          this.props.notificationCount > 0 ?
+            <View style={styles.Badge}>
+              <Text style={styles.Counter}>{this.props.notificationCount}</Text>
+            </View> : null
+        }
+        <Text style={styles.textTab}>{this.props.title}</Text>
       </View>
     );
   }
@@ -29,11 +36,40 @@ export default class Routes extends Component {
     super();
     this.state = {
       sid: false,
-      loading: false
+      loading: false,
+      mail: null,
+      lenta: null,
+      journal: null
     }
   }
 
+  checkCounters = () => {
+    AsyncStorage.getItem('sid').then((token) => {
+			fetch('https://spcs.me/neoapi/common', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					'X-Proxy': 'spaces',
+					'Cookie': 'json=1; sid=' + token
+				},
+				body: Serialize({
+          'method': 'getTopCounts'
+          //getSectionsCounters
+				})
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					this.setState({
+            mail: data["3"],
+            lenta: data["2"],
+            journal: data["1"]
+          });
+				});
+		})
+  }
+
   componentDidMount() {
+    this.checkCounters();
     SplashScreen.hide();
     AsyncStorage.getItem('sid').then((token) => {
       if (token !== null) {
@@ -85,24 +121,29 @@ export default class Routes extends Component {
                 iconName="email"
                 icon={TabIcon}
                 component={Mail}
+                notificationCount={this.state.mail}
               />
               <Scene key="Journal"
                 title="Журнал"
                 iconName="forum"
                 icon={TabIcon}
                 component={Journal}
+                notificationCount={this.state.jornal}
               />
               <Scene key="Lenta"
                 title="Лента"
                 iconName="newspaper"
                 icon={TabIcon}
-                component={Lenta} />
+                component={Lenta}
+                notificationCount={this.state.lenta}
+              />
               <Scene key="Profile"
                 title="Профиль"
                 iconName="account-circle"
                 icon={TabIcon}
                 component={Profile}
-                initial />
+                initial
+              />
             </Scene>
           </Stack>
         </Router>
@@ -127,5 +168,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'center'
+  },
+  textTab: {
+    color: '#fff',
+    fontSize: 12
+  },
+  Badge: {
+    position: 'absolute',
+    right: -1,
+    top: 2,
+    backgroundColor: 'red',
+    borderRadius: 9,
+    minWidth: 18,
+    height: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  Counter: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: 'bold'
   }
 });
