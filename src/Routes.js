@@ -6,12 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from './routes/Login';
 import Register from './routes/Register';
 import Restore from './routes/Restore';
-//import Home from './routes/Home';
 import Mail from './routes/Mail';
 import Journal from './routes/Journal';
 import Lenta from './routes/Lenta';
 import Profile from './routes/Profile';
 import { Serialize } from './api';
+import ws from './api/ws';
 
 class TabIcon extends Component {
   render() {
@@ -45,30 +45,49 @@ export default class Routes extends Component {
 
   checkCounters = () => {
     AsyncStorage.getItem('sid').then((token) => {
-			fetch('https://spcs.me/neoapi/common', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					'X-Proxy': 'spaces',
-					'Cookie': 'json=1; sid=' + token
-				},
-				body: Serialize({
+      fetch('https://spcs.me/neoapi/common', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'X-Proxy': 'spaces',
+          'Cookie': 'json=1; sid=' + token
+        },
+        body: Serialize({
           'method': 'getTopCounts'
-          //getSectionsCounters
-				})
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					this.setState({
-            mail: data["3"],
-            lenta: data["2"],
-            journal: data["1"]
-          });
-				});
-		})
+        })
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          mail: data["3"],
+          lenta: data["2"],
+          journal: data["1"]
+        });
+      });
+    })
   }
 
   componentDidMount() {
+    AsyncStorage.getItem('ws').then((channel_id) => {
+      var json = {
+        url: "wss://lp03.spcs.me/ws/" + channel_id,
+        onOpen: function () {
+          console.log("[LP] start connecting, time: ", (new Date).toUTCString());
+        },
+        onMessage: function (e) {
+          console.log(e)
+        }
+      }
+      ws.init(json)
+      ws.on(this, 24, function (data) {
+        console.log(data)
+      })
+      ws.on(this, 21, function (data) {
+        console.log(data)
+        this.checkCounters()
+      })
+    });
+
     this.checkCounters();
     SplashScreen.hide();
     AsyncStorage.getItem('sid').then((token) => {

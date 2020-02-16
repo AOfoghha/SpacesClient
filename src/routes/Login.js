@@ -103,6 +103,7 @@ export default class Login extends Component {
 				.then((data) => {
 					if (data.code == "00000") {
 						AsyncStorage.setItem('sid', data.attributes.sid);
+						AsyncStorage.setItem('ws', data.attributes.channel_id);
 						Actions.Profile();
 					} else if (data.code == "01003") {
 						Alert.alert('Spaces', 'Неверный логин или пароль.');

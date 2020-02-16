@@ -16,7 +16,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/spaces-dev/SpacesClient/master/src/images/Screenshot_2.png)
 
-## Key Features
+## Key Features (TODO)
 
 * Multiple Accounts
 * Dark/Light mode
@@ -39,6 +39,31 @@ $ npm install
 
 # Run the app
 $ react-native run-android
+
+# Clean cache
+$ react-native start --reset-cache
+```
+
+## Help Commands
+
+```bash
+# List devices
+$ adb devices
+
+# Connect to device
+$ adb -s <ID> reverse tcp:8081 tcp:8081
+
+# Reload app (emulated double tap R)
+$ adb shell input keyevent 82
+
+# Release
+$ cd android && gradlew assembleRelease
+
+# Debug
+$ cd android && gradlew assembleDebug
+
+# Clean cache
+$ cd android && gradlew clean
 ```
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.

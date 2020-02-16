@@ -3,18 +3,19 @@ package com.spaces.dev;
 import android.app.Application;
 import android.content.Context;
 
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.swmansion.reanimated.ReanimatedPackage;
-import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-
+import com.facebook.react.shell.MainReactPackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -37,7 +38,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNInAppBrowserPackage(),
             new ReanimatedPackage(),
             new RNGestureHandlerPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new RNDeviceInfo()
           );
         }
 

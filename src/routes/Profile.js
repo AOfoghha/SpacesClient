@@ -37,10 +37,10 @@ export default class Profile extends Component {
 					'rid': 'APA91bFwsPw4clF4y0RHWtg6Y4fC6UnxcrmZYLiko_ifv-8g7Qi-5koV4GRaVax5zMWTMke9eUF-MzHhzdM9iYQEFDff5lnHuMlwIl-zNAu4MfYS4PlL0j8C28XZgNJmQbRSd1BE4eSW'
 				})
 			})
-				.then((response) => response.json())
-				.then((data) => {
-					alert(JSON.stringify(data));
-				});
+			.then((response) => response.json())
+			.then((data) => {
+				alert(JSON.stringify(data));
+			});
 		})
 	}
 
@@ -58,12 +58,12 @@ export default class Profile extends Component {
 					'rid': 'APA91bFwsPw4clF4y0RHWtg6Y4fC6UnxcrmZYLiko_ifv-8g7Qi-5koV4GRaVax5zMWTMke9eUF-MzHhzdM9iYQEFDff5lnHuMlwIl-zNAu4MfYS4PlL0j8C28XZgNJmQbRSd1BE4eSW'
 				})
 			})
-				.then((response) => response.json())
-				.then((data) => {
-					AsyncStorage.removeItem('sid');
-					alert(JSON.stringify(data));
-					Actions.Login();
-				});
+			.then((response) => response.json())
+			.then((data) => {
+				AsyncStorage.removeItem('sid');
+				alert(JSON.stringify(data));
+				Actions.Login();
+			});
 		})
 	}
 

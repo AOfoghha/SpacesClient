@@ -27,8 +27,8 @@ export default class Journal extends Component {
   fetchJournal() {
     AsyncStorage.getItem('sid').then((token) => {
       this.setState({
-				loading: true
-			});
+        loading: true
+      });
       fetch('http://spcs.me/journal/', {
         method: 'POST',
         headers: {
@@ -36,13 +36,13 @@ export default class Journal extends Component {
           'Cookie': 'json=1; sid=' + token
         }
       })
-        .then((response) => response.json())
-        .then((data) => {
-          alert(JSON.stringify(data));
-          this.setState({
-						loading: false
-					});
+      .then((response) => response.json())
+      .then((data) => {
+        alert(JSON.stringify(data));
+        this.setState({
+          loading: false
         });
+      });
     })
   }
 
