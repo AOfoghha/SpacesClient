@@ -23,6 +23,29 @@ export default class Profile extends Component {
 		}
 	}
 
+	/*setDevice = () => {
+		fetch('https://spcs.me/services/force_device_type', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				'X-Proxy': 'spaces'
+			},
+			body: Serialize({
+				'Vck': this.state.csrf,
+				'dtype': 'desktop'
+			})
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.device_type == "4") {
+					console.log('Версия сайта установлена как desktop');
+				}
+			})
+			.catch((error) => {
+				Alert.alert('Spaces', error);
+			}).done();
+	}*/
+
 	userCheck() {
 		AsyncStorage.getItem('sid').then((token) => {
 			fetch('https://spcs.me/neoapi/session', {
@@ -33,8 +56,7 @@ export default class Profile extends Component {
 					'Cookie': 'json=1; sid=' + token
 				},
 				body: Serialize({
-					'method': 'check',
-					'rid': 'APA91bFwsPw4clF4y0RHWtg6Y4fC6UnxcrmZYLiko_ifv-8g7Qi-5koV4GRaVax5zMWTMke9eUF-MzHhzdM9iYQEFDff5lnHuMlwIl-zNAu4MfYS4PlL0j8C28XZgNJmQbRSd1BE4eSW'
+					'method': 'check'
 				})
 			})
 			.then((response) => response.json())
@@ -54,8 +76,7 @@ export default class Profile extends Component {
 					'Cookie': 'json=1; sid=' + token
 				},
 				body: Serialize({
-					'method': 'logout',
-					'rid': 'APA91bFwsPw4clF4y0RHWtg6Y4fC6UnxcrmZYLiko_ifv-8g7Qi-5koV4GRaVax5zMWTMke9eUF-MzHhzdM9iYQEFDff5lnHuMlwIl-zNAu4MfYS4PlL0j8C28XZgNJmQbRSd1BE4eSW'
+					'method': 'logout'
 				})
 			})
 			.then((response) => response.json())

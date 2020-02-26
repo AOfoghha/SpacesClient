@@ -38,7 +38,7 @@ export default class Lenta extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
         this.setState({
           loading: false
         });

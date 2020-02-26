@@ -16,6 +16,7 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import org.wonday.orientation.OrientationPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -39,7 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ReanimatedPackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage(),
-            new RNDeviceInfo()
+            new RNDeviceInfo(),
+            new OrientationPackage()
           );
         }
 

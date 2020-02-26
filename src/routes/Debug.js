@@ -6,7 +6,8 @@ import {
   SafeAreaView,
   View,
   TouchableOpacity,
-  Clipboard
+  Clipboard,
+  Alert
 } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import {
@@ -215,9 +216,6 @@ export default class App extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={styles.header}>
-          Spaces Debugger
-        </Text>
         {this.state.activeTab === 'constant' ? (
           <>
             <ScrollView>
@@ -308,13 +306,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-  },
-  header: {
-    fontSize: 20,
-    textAlign: 'center',
-    padding: 10,
-    color: "#ffffff",
-    backgroundColor: '#28284c',
   },
   instructions: {
     textAlign: 'left',

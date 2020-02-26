@@ -10,6 +10,7 @@ import Mail from './routes/Mail';
 import Journal from './routes/Journal';
 import Lenta from './routes/Lenta';
 import Profile from './routes/Profile';
+import Debug from './routes/Debug'
 import { Serialize } from './api';
 import ws from './api/ws';
 
@@ -35,7 +36,7 @@ export default class Routes extends Component {
   constructor() {
     super();
     this.state = {
-      sid: false,
+      sid: null,
       loading: false,
       mail: null,
       lenta: null,
@@ -67,7 +68,7 @@ export default class Routes extends Component {
     })
   }
 
-  componentDidMount() {
+  webSocket = () => {
     AsyncStorage.getItem('ws').then((channel_id) => {
       var json = {
         url: "wss://lp03.spcs.me/ws/" + channel_id,
@@ -75,20 +76,27 @@ export default class Routes extends Component {
           console.log("[LP] start connecting, time: ", (new Date).toUTCString());
         },
         onMessage: function (e) {
-          console.log(e)
+          console.log('[LP] onMessage, time: ', (new Date).toUTCString());
+          console.log(e);
         }
       }
       ws.init(json)
       ws.on(this, 24, function (data) {
+        console.log('[LP] on 24, time: ', (new Date).toUTCString());
         console.log(data)
       })
       ws.on(this, 21, function (data) {
+        console.log('[LP] on 21, time: ', (new Date).toUTCString());
         console.log(data)
         this.checkCounters()
       })
     });
+  }
 
+  componentDidMount() {
+    //this.checkCounters();
     this.checkCounters();
+    this.webSocket();
     SplashScreen.hide();
     AsyncStorage.getItem('sid').then((token) => {
       if (token !== null) {
@@ -115,7 +123,10 @@ export default class Routes extends Component {
     } else {
       return (
         <Router navigationBarStyle={{ backgroundColor: '#28284c' }} titleStyle={{ color: '#fff' }} tintColor='#fff'>
-          <Stack key="root" hideNavBar={true}>
+          <Stack key="root" hideNavBar={false}>
+            <Scene key="Debug"
+              component={Debug}
+              title="Spaces Debugger" />
             <Scene key="Login"
               component={Login}
               title="Вход"
